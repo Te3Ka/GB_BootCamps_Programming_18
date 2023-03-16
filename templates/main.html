@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Мейн Пейдж</title>
+</head>
+<body>
+
+<table>
+	{% for row in data %}
+		<tr>{{ row[0] }}</tr><tr>{{ row[1] }}</tr><tr>{{ row[2] }}</tr>
+</table>
+{% endblock %}
+</body>
+</html>
