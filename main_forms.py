@@ -13,7 +13,14 @@ def main():
 def reg():
 	form = LogForm()
 	if form.validate_on_submit():
-		pass
+		if form.password_repeat.data != form.password.data:
+			return render_template('registration.html', title="Регистрация", form=form, 
+									message='Пароли не совпадают!')
+		
+		with open('file.txt', 'a', encoding='utf-8') as file:
+			file.write(f'{form.name.data};{form.email.data};{form.password.data}\n')
+		return render_template('registration.html', message='Всё верно')
+
 	return render_template('registration.html', title="Регистрация", form=form)
 
 if __name__ == '__main__':
