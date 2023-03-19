@@ -24,10 +24,11 @@
 		<br>
 		{{ form.submit() }}
 		<br>
-
-		{{ message }}
-	</form>
-
 {% endif %}
+	{{ message }}<br>
 
+	{% if message == 'Всё верно'%}
+		<a href="/login">Залогиниться</a>
+	{% endif %}
+	</form>
 {% endblock %}
