@@ -24,11 +24,11 @@ def reg():
 
 	return render_template('registration.html', title="Регистрация", form=form)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def log():
 	form = AuthForm()
 	if form.validate_on_submit():
-		with open('file.txt', 't', encoding='utf-8') as file:
+		with open('file.txt', 'r', encoding='utf-8') as file:
 			data = ' '.join(file.readlines())
 		
 		if form.email.data not in data:
@@ -36,8 +36,8 @@ def log():
 		else:
 			for i in data.split():
 				if form.email.data in i:
-					if i.split(';')[-1][:-2] == form.password.data:
-						return render_template('login.html', message=f'Я тебя знаю, {form.name.data}')
+					if i.split(';')[-1] == form.password.data:
+						return render_template('login.html', message='Я тебя знаю')
 
 
 	return render_template('login.html', form=form)
